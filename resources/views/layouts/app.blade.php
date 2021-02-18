@@ -27,7 +27,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="https://www.flowkl.com">Flowkl</a>
+        <a class="navbar-brand" href="{{ url('/') }}">CargoFive</a>
       </div>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
@@ -38,10 +38,10 @@
         <ul class="nav navbar-nav navbar-right">
           @if (Auth::guest())
           <li>
-            <a href="{{ url('/auth/login') }}">Login</a>
+            <a href="{{ url('/admin') }}">Login</a>
           </li>
           <li>
-            <a href="{{ url('/auth/register') }}">Register</a>
+            <a href="{{ url('/admin/register') }}">Register</a>
           </li>
           @else
           <li class="dropdown">
@@ -102,7 +102,7 @@
     </div>
     <div class="row">
       <div class="col-md-10 col-md-offset-1">
-        <p>Copyright © 2015 | <a href="https://www.flowkl.com">Flowkl</a></p>
+        <p>Copyright © 2021 | <a href="https://github.com/herick1/cargofive-blog"> herick1</a></p>
       </div>
     </div>
   </div>

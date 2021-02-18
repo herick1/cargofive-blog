@@ -20,12 +20,18 @@ Route::get('/home', ['as' => 'home', 'uses' => 'PostController@index']);
 // Route::resource('auth', 'Auth\AuthController');
 // Route::resource('password', 'Auth\PasswordController');
 Route::get('/logout', 'UserController@logout');
-Route::group(['prefix' => 'auth'], function () {
+Route::group(['prefix' => 'admin'], function () {
   Auth::routes();
 });
 
+// Custom Authentication Routes...
+Route::get('admin', [
+  'as' => 'admin',
+  'uses' => 'Auth\LoginController@showLoginForm'
+]);
+
 // check for logged in user
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['admin'])->group(function () {
   // show new post form
   Route::get('new-post', 'PostController@create');
   // save new post
