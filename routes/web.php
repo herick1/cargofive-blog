@@ -31,7 +31,7 @@ Route::get('admin', [
 ]);
 
 // check for logged in user
-Route::middleware(['admin'])->group(function () {
+Route::middleware(['auth'])->group(function () {
   // show new post form
   Route::get('new-post', 'PostController@create');
   // save new post
