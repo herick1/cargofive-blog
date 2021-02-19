@@ -165,6 +165,6 @@ class PostController extends Controller
       $data['errors'] = 'Invalid Operation. You have not sufficient permissions';
     }
 
-    return redirect('/')->with($data);
+    return redirect()->back()->with($data);
   }
 }

@@ -12,7 +12,7 @@ There is no post till now. Login and write a new post now!!!
     <div class="list-group-item">
       <h3><a href="{{ url('/'.$post->slug) }}">{{ $post->title }}</a>
         @if(!Auth::guest() && ($post->author_id == Auth::user()->id || Auth::user()->is_admin()))
-        @if($post->active == '1')
+        @if($post->status == 'published')
         <button class="btn" style="float: right"><a href="{{ url('edit/'.$post->slug)}}">Edit Post</a></button>
         @else
         <button class="btn" style="float: right"><a href="{{ url('edit/'.$post->slug)}}">Edit Draft</a></button>

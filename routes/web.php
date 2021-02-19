@@ -20,15 +20,10 @@ Route::get('/home', ['as' => 'home', 'uses' => 'PostController@index']);
 // Route::resource('auth', 'Auth\AuthController');
 // Route::resource('password', 'Auth\PasswordController');
 Route::get('/logout', 'UserController@logout');
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'auth'], function () {
   Auth::routes();
 });
 
-// Custom Authentication Routes...
-Route::get('admin', [
-  'as' => 'admin',
-  'uses' => 'Auth\LoginController@showLoginForm'
-]);
 
 Route::get('/forget-password', 'Auth\ForgotPasswordController@getEmail')->name('forget-password');
 Route::post('/forget-password', 'Auth\ForgotPasswordController@postEmail')->name('forget-password');
