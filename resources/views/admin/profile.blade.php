@@ -30,7 +30,7 @@
           @endif
         </tr>
         <tr>
-          <td>Posts in Draft </td>
+          <td>Posts in Draft or Inactive</td>
           <td>{{$posts_draft_count}}</td>
           @if($author && $posts_draft_count)
           <td><a href="{{ url('my-drafts')}}">Show All</a></td>

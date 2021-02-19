@@ -19,8 +19,7 @@ Add New Post
     <div class="form-group">
     <select name="status" id="status" class="form-control">
       @if(old('status'))
-        <option  value="{{ old('status') }}"></option>
-        {{ old('title') }}
+        <option  value="{{ old('status') }}">{{ old('status') }}</option>
       @endif
         <optgroup label="options"> 
           <option  value="published">published</option>
@@ -33,6 +32,5 @@ Add New Post
     <textarea name='body' class="form-control">{{ old('body') }}</textarea>
   </div>
   <input type="submit" name='publish' class="btn btn-success" value="Publish" />
-  <input type="submit" name='save' class="btn btn-default" value="Save Draft" />
 </form>
 @endsection
