@@ -10,7 +10,10 @@ Page does not exist
 @endif
 @endsection
 @section('title-meta')
-<p>{{ $post->created_at->format('M d,Y \a\t h:i a') }} By <a href="{{ url('/user/'.$post->author_id)}}">{{ $post->author->name }}</a></p>
+<p>Created at: {{ $post->created_at->format('M d,Y \a\t h:i a') }} By <a href="{{ url('/user/'.$post->author_id)}}">{{ $post->author->name }}</a></p>
+<p>Last updated at: {{ $post->updated_at->format('M d,Y \a\t h:i a') }}</p>
+<strong>{{ $post->status }}</strong>
+
 @endsection
 @section('content')
 @if($post)

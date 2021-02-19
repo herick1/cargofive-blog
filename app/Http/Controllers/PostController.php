@@ -22,7 +22,7 @@ class PostController extends Controller
    */
   public function index()
   {
-    $posts = Posts::where('active', '1')->orderBy('created_at', 'desc')->paginate(5);
+    $posts = Posts::where('status', 'published')->orderBy('updated_at', 'desc')->paginate(5);
     $title = 'Latest Posts';
     return view('home')->withPosts($posts)->withTitle($title);
   }
@@ -52,6 +52,7 @@ class PostController extends Controller
     $post = new Posts();
     $post->title = $request->get('title');
     $post->body = $request->get('body');
+    $post->status = $request->input('status');
     $post->slug = Str::slug($post->title);
 
     $duplicate = Posts::where('slug', $post->slug)->first();
@@ -60,15 +61,14 @@ class PostController extends Controller
     }
 
     $post->author_id = $request->user()->id;
-    if ($request->has('save')) {
-      $post->active = 0;
+
+    if ($post->status != "published") {
       $message = 'Post saved successfully';
     } else {
-      $post->active = 1;
       $message = 'Post published successfully';
     }
     $post->save();
-    return redirect('edit/' . $post->slug)->withMessage($message);
+    return redirect('/')->withMessage($message);
   }
 
   /**
@@ -82,7 +82,7 @@ class PostController extends Controller
     $post = Posts::where('slug', $slug)->first();
 
     if ($post) {
-      if ($post->active == false)
+      if ($post->status != "published")
         return redirect('/')->withErrors('requested page not found');
       $comments = $post->comments;
     } else {
@@ -132,13 +132,12 @@ class PostController extends Controller
 
       $post->title = $title;
       $post->body = $request->input('body');
+      $post->status = $request->input('status');
 
-      if ($request->has('save')) {
-        $post->active = 0;
+      if ($post->status != "published") {
         $message = 'Post saved successfully';
         $landing = 'edit/' . $post->slug;
       } else {
-        $post->active = 1;
         $message = 'Post updated successfully';
         $landing = $post->slug;
       }
@@ -166,6 +165,6 @@ class PostController extends Controller
       $data['errors'] = 'Invalid Operation. You have not sufficient permissions';
     }
 
-    return redirect('/')->with($data);
+    return redirect()->back()->with($data);
   }
 }

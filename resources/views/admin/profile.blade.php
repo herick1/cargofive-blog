@@ -30,7 +30,7 @@
           @endif
         </tr>
         <tr>
-          <td>Posts in Draft </td>
+          <td>Posts in Draft or Inactive</td>
           <td>{{$posts_draft_count}}</td>
           @if($author && $posts_draft_count)
           <td><a href="{{ url('my-drafts')}}">Show All</a></td>
@@ -45,16 +45,38 @@
 </div>
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3>Latest Posts</h3>
+    
+    <button class="btn" style="float: right"><a href="{{ url('/new-post') }}">Add new post</a></button>
+    <h3>Posts</h3>
   </div>
   <div class="panel-body">
     @if(!empty($latest_posts[0]))
-    @foreach($latest_posts as $latest_post)
-    <p>
-      <strong><a href="{{ url('/'.$latest_post->slug) }}">{{ $latest_post->title }}</a></strong>
-      <span class="well-sm">On {{ $latest_post->created_at->format('M d,Y \a\t h:i a') }}</span>
-    </p>
-    @endforeach
+    <table class="table-padding">
+        <style>
+          .table-padding th {
+            padding: 3px 8px;
+          }
+        </style>
+        <tr class="text-center">
+          <th class="text-center">Title</th>
+          <th class="text-center">Updated at</th>
+          <th class="text-center">Status</th>
+          <th class="text-center"></th>
+          <th class="text-center"></th>
+        </tr>
+
+        @foreach($latest_posts as $latest_post)
+        <tr>
+          <td><strong><a href="{{ url('/'.$latest_post->slug) }}">{{ $latest_post->title }}</a></strong></td>
+          <td> <span class="well-sm">On {{ $latest_post->updated_at->format('M d,Y \a\t h:i a') }}</span></td>
+          <td>{{ $latest_post->status }}</td>
+          <td> <button class="btn btn-second"><a href="{{ url('edit/'.$latest_post->slug)}}">Edit Post</a></button></td>
+
+          <td><a href="{{  url('delete/'.$latest_post->id.'?_token='.csrf_token()) }}" class="btn btn-danger">Delete</a></td>
+
+        </tr>
+      @endforeach
+      </table>
     @else
     <p>You have not written any post till now.</p>
     @endif

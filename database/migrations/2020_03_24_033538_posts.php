@@ -23,7 +23,7 @@ class Posts extends Migration
       $table->string('title')->unique();
       $table->text('body');
       $table->string('slug')->unique();
-      $table->boolean('active');
+      $table->enum('status', ['published', 'inactive', 'draft'])->default('published');
       $table->timestamps();
     });
   }

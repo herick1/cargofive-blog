@@ -20,15 +20,10 @@ Route::get('/home', ['as' => 'home', 'uses' => 'PostController@index']);
 // Route::resource('auth', 'Auth\AuthController');
 // Route::resource('password', 'Auth\PasswordController');
 Route::get('/logout', 'UserController@logout');
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'auth'], function () {
   Auth::routes();
 });
 
-// Custom Authentication Routes...
-Route::get('admin', [
-  'as' => 'admin',
-  'uses' => 'Auth\LoginController@showLoginForm'
-]);
 
 Route::get('/forget-password', 'Auth\ForgotPasswordController@getEmail')->name('forget-password');
 Route::post('/forget-password', 'Auth\ForgotPasswordController@postEmail')->name('forget-password');
@@ -38,6 +33,10 @@ Route::post('/reset-password', 'Auth\ResetPasswordController@updatePassword');
 
 // check for logged in user
 Route::middleware(['auth'])->group(function () {
+
+  //users profile
+  Route::get('admin', 'UserController@profile')->where('id', '[0-9]+');
+
   // show new post form
   Route::get('new-post', 'PostController@create');
   // save new post
@@ -58,8 +57,6 @@ Route::middleware(['auth'])->group(function () {
   Route::post('comment/delete/{id}', 'CommentController@distroy');
 });
 
-//users profile
-Route::get('user/{id}', 'UserController@profile')->where('id', '[0-9]+');
 // display list of posts
 Route::get('user/{id}/posts', 'UserController@user_posts')->where('id', '[0-9]+');
 // display single post

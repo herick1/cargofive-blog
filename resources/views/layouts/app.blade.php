@@ -38,10 +38,10 @@
           </li>
           @if (Auth::guest())
           <li>
-            <a href="{{ url('/admin') }}">Login</a>
+            <a href="{{ url('/auth/login') }}">Login</a>
           </li>
           <li>
-            <a href="{{ url('/admin/register') }}">Register</a>
+            <a href="{{ url('/auth/register') }}">Register</a>
           </li>
           @else
           <li class="dropdown">
@@ -51,12 +51,9 @@
               <li>
                 <a href="{{ url('/new-post') }}">Add new post</a>
               </li>
-              <li>
-                <a href="{{ url('/user/'.Auth::id().'/posts') }}">My Posts</a>
-              </li>
               @endif
               <li>
-                <a href="{{ url('/user/'.Auth::id()) }}">My Profile</a>
+                <a href="{{ url('/admin') }}">My Dashboard</a>
               </li>
               <li>
                 <a href="{{ url('/logout') }}">Logout</a>
