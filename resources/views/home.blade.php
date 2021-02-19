@@ -19,7 +19,9 @@ There is no post till now. Login and write a new post now!!!
         @endif
         @endif
       </h3>
-      <p>{{ $post->created_at->format('M d,Y \a\t h:i a') }} By <a href="{{ url('/user/'.$post->author_id)}}">{{ $post->author->name }}</a></p>
+      <p>Created at: {{ $post->created_at->format('M d,Y \a\t h:i a') }} By <a href="{{ url('/user/'.$post->author_id)}}">{{ $post->author->name }}</a></p>
+      <p>Last updated at: {{ $post->updated_at->format('M d,Y \a\t h:i a') }}</p>
+      <strong>{{ $post->status }}</strong>
     </div>
     <div class="list-group-item">
       <article>

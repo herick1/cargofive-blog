@@ -16,6 +16,19 @@ Add New Post
   <div class="form-group">
     <input required="required" value="{{ old('title') }}" placeholder="Enter title here" type="text" name="title" class="form-control" />
   </div>
+    <div class="form-group">
+    <select name="status" id="status" class="form-control">
+      @if(old('status'))
+        <option  value="{{ old('status') }}"></option>
+        {{ old('title') }}
+      @endif
+        <optgroup label="options"> 
+          <option  value="published">published</option>
+          <option  value="inactive">inactive</option>
+          <option  value="draft">draft</option>
+        </optgroup>
+    </select>
+  </div>
   <div class="form-group">
     <textarea name='body' class="form-control">{{ old('body') }}</textarea>
   </div>
