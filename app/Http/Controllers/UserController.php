@@ -60,8 +60,9 @@ class UserController extends Controller
   /**
    * profile for user
    */
-  public function profile(Request $request, $id)
+  public function profile(Request $request)
   {
+    $id = Auth::user()->id; 
     $data['user'] = User::find($id);
     if (!$data['user'])
       return redirect('/');
@@ -77,6 +78,6 @@ class UserController extends Controller
     $data['posts_draft_count'] = $data['posts_count'] - $data['posts_active_count'];
     $data['latest_posts'] = $data['user']->posts;
     $data['latest_comments'] = $data['user']->comments->take(5);
-    return view('auth.profile', $data);
+    return view('admin.profile', $data);
   }
 }

@@ -53,7 +53,7 @@
               </li>
               @endif
               <li>
-                <a href="{{ url('/user/'.Auth::id()) }}">My Dashboard</a>
+                <a href="{{ url('/admin') }}">My Dashboard</a>
               </li>
               <li>
                 <a href="{{ url('/logout') }}">Logout</a>
