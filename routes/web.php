@@ -30,8 +30,14 @@ Route::get('admin', [
   'uses' => 'Auth\LoginController@showLoginForm'
 ]);
 
+Route::get('/forget-password', 'Auth\ForgotPasswordController@getEmail')->name('forget-password');
+Route::post('/forget-password', 'Auth\ForgotPasswordController@postEmail')->name('forget-password');
+
+Route::get('/reset-password/{token}', 'Auth\ResetPasswordController@getPassword');
+Route::post('/reset-password', 'Auth\ResetPasswordController@updatePassword');
+
 // check for logged in user
-Route::middleware(['admin'])->group(function () {
+Route::middleware(['auth'])->group(function () {
   // show new post form
   Route::get('new-post', 'PostController@create');
   // save new post
