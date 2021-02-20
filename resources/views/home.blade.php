@@ -13,11 +13,11 @@ There is no post till now. Login and write a new post now!!!
       <h3><a href="{{ url('/'.$post->slug) }}">{{ $post->title }}</a>
         @if(!Auth::guest() && ($post->author_id == Auth::user()->id || Auth::user()->is_admin()))
         @if($post->status == 'published')
-          <button class="btn" style="float: right"><a href="{{ url('edit/'.$post->slug)}}">Edit Post</a></button>
+          <a href="{{ url('edit/'.$post->slug)}}"><button class="btn" style="float: right">Edit Post</button></a>
         @elseif($post->status == 'draft')
-          <button class="btn" style="float: right"><a href="{{ url('edit/'.$post->slug)}}">Edit Draft</a></button>
+          <a href="{{ url('edit/'.$post->slug)}}"><button class="btn" style="float: right">Edit Draft</button></a>
         @else
-          <button class="btn" style="float: right"><a href="{{ url('edit/'.$post->slug)}}">Edit Inactive post</a></button>
+          <a href="{{ url('edit/'.$post->slug)}}"><button class="btn" style="float: right">Edit Inactive post</button></a>
         @endif
         @endif
       </h3>
