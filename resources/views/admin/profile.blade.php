@@ -46,7 +46,9 @@
 <div class="panel panel-default">
   <div class="panel-heading">
     
-    <button class="btn" style="float: right"><a href="{{ url('/new-post') }}">Add new post</a></button>
+     @if (!Auth::guest()) 
+        <button class="btn" style="float: right"><a href="{{ url('/new-post') }}">Add new post</a></button>
+    @endif
     <h3>Posts</h3>
   </div>
   <div class="panel-body">
@@ -70,9 +72,16 @@
           <td><strong><a href="{{ url('/'.$latest_post->slug) }}">{{ $latest_post->title }}</a></strong></td>
           <td> <span class="well-sm">On {{ $latest_post->updated_at->format('M d,Y \a\t h:i a') }}</span></td>
           <td>{{ $latest_post->status }}</td>
-          <td> <button class="btn btn-second"><a href="{{ url('edit/'.$latest_post->slug)}}">Edit Post</a></button></td>
-
-          <td><a href="{{  url('delete/'.$latest_post->id.'?_token='.csrf_token()) }}" class="btn btn-danger">Delete</a></td>
+          <td> 
+            @if (!Auth::guest())
+            <button class="btn btn-second"><a href="{{ url('edit/'.$latest_post->slug)}}">Edit Post</a></button>
+            @endif
+          </td>
+          <td>
+            @if (!Auth::guest())
+            <a href="{{  url('delete/'.$latest_post->id.'?_token='.csrf_token()) }}" class="btn btn-danger">Delete</a>
+            @endif
+          </td>
 
         </tr>
       @endforeach
