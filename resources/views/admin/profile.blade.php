@@ -47,7 +47,7 @@
   <div class="panel-heading">
     
      @if (!Auth::guest()) 
-        <button class="btn" style="float: right"><a href="{{ url('/new-post') }}">Add new post</a></button>
+        <a href="{{ url('/new-post') }}"><button class="btn" style="float: right">Add new post</button></a>
     @endif
     <h3>Posts</h3>
   </div>
