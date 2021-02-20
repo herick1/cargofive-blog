@@ -69,7 +69,14 @@
 
         @foreach($latest_posts as $latest_post)
         <tr>
-          <td><strong><a href="{{ url('/'.$latest_post->slug) }}">{{ $latest_post->title }}</a></strong></td>
+          <td>
+            @if ($latest_post->status != "published")
+              <strong>{{ $latest_post->title }}</strong>
+            @else
+              <strong><a href="{{ url('/'.$latest_post->slug) }}">{{ $latest_post->title }}</a></strong>            
+            @endif
+
+          </td>
           <td> <span class="well-sm">On {{ $latest_post->updated_at->format('M d,Y \a\t h:i a') }}</span></td>
           <td>{{ $latest_post->status }}</td>
           <td> 
