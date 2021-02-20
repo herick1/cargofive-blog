@@ -28,7 +28,7 @@ Instalación
 Base de Datos
 ------------
 
-![](https://github.com/herick1/cargofive-blog/blob/master/public/captures/cargofive.png)
+![](https://github.com/herick1/cargofive-blog/blob/main/public/captures/cargofive.png)
 
 * users (default + role)
 * posts (id, author, title, body, slug, published_on, last_modified, status)
