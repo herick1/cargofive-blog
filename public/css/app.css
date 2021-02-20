@@ -4987,7 +4987,7 @@ a.list-group-item-danger.active:focus {
 .panel-heading {
   padding: 10px 15px;
   border-bottom: 1px solid transparent;
-  border-top-right-radius: 17px;
+  border-top-right-radius: 17px!important;
   border-top-left-radius: 17px!important;
 }
 .panel-heading > .dropdown .dropdown-toggle {
