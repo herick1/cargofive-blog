@@ -17,7 +17,9 @@
     <![endif]-->
 </head>
 
-<body>
+<body style="background-image: url({{url('/images/background.jpg')}}); 
+    background-position: center top;
+    background-size: 100% auto;">
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
